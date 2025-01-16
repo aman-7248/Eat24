@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body{
-  mi-hieght:100vh;
+  min-hieght:100vh;
 }
 a{
   text-decoration: none;
