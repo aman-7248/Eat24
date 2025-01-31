@@ -4,8 +4,27 @@ import { food_list } from "../assets/assets";
 export const StoreContext=createContext(null);
 
 const StoreContextProvider=(props)=>{
-    const contextValue={
-        food_list
+
+
+    const [cartItems,setCartItems]=useState({}); //cartItems is an object storing cartItems;
+    const addToCart=(itemId)=>{                   //adding items to cart
+        if(!cartItems[itemId]){
+            setCartItems((prev)=>({...prev,[itemId]:1}))
+        }
+        else{
+            setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
+        }
+    }
+    const removeFromCart=(itemId)=>{     //removing from cart
+        setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1})) 
+    }
+
+    const contextValue={ 
+        food_list,
+        cartItems,
+        setCartItems,
+        addToCart,
+        removeFromCart,
     }
     return (
         <StoreContext.Provider value={contextValue}>
